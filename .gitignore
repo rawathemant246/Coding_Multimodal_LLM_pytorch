@@ -1,0 +1,45 @@
+# Ignore Python bytecode and cache directories
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore environment files
+*.env
+
+# Ignore log files
+*.log
+
+# Ignore virtual environment directories
+venv/
+env/
+mod/
+# Ignore editor or IDE files
+.vscode/
+.idea/
+*.swp
+
+# Ignore database-related files (if any are auto-generated)
+*.sqlite3
+*.db
+
+# Ignore compiled C extensions
+*.so
+
+# Ignore pytest cache
+.pytest_cache/
+
+# Ignore coverage reports
+htmlcov/
+.coverage
+*.cover
+*.py,cover
+
+# Ignore any temporary files or backups
+*.bak
+*.tmp
+*.~*
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
