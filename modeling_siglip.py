@@ -35,3 +35,5 @@ class SiglipVisionConfig:
         self.layer_norm_eps = layer_norm_eps
         self.num_image_tokens = num_image_tokens
         
+    
+    def _config_settings(self, ):
