@@ -36,4 +36,5 @@ class SiglipVisionConfig:
         self.num_image_tokens = num_image_tokens
         
     
-    def _config_settings(self, ):
+    def _config_settings(self, **kwargs ):
+        
