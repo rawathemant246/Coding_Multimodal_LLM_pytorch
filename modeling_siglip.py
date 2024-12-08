@@ -82,7 +82,11 @@ class SiglipVisionEmbeddings(nn.Module):
         embeddings = embeddings + self.position_embedding(self.position_ids)
         # [Batch_size, Num_Patches, Embed_Dim]
         return embeddings
+
+class SiglipAttention(nn.Module):
     
+    def __init__(self, config : SiglipVisionConfig):
+        
         
 
 
