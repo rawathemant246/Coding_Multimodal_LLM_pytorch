@@ -83,9 +83,19 @@ class SiglipVisionEmbeddings(nn.Module):
         # [Batch_size, Num_Patches, Embed_Dim]
         return embeddings
 
-# class SiglipAttention(nn.Module):
+class SiglipAttention(nn.Module):
     
-#     def __init__(self, config : SiglipVisionConfig):
+    def __init__(self, config : SiglipVisionConfig):
+        
+        self.config = config
+        
+        pass
+
+
+    def forward(self, hidden_states : torch.Tensor) -> Tuple[torch.Tensor]:
+
+
+        pass
         
 
 
