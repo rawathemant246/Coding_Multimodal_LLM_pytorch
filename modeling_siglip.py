@@ -85,17 +85,31 @@ class SiglipVisionEmbeddings(nn.Module):
 
 class SiglipAttention(nn.Module):
     
+    '''
+    Multi-headed attention from Attention all you need Paper
+    '''
+    
     def __init__(self, config : SiglipVisionConfig):
         
+        super().__init__()
+        
         self.config = config
+        self.embed_dim = config.hidden_size
+        self.num_heads = config.num_attention_heads
+        self.head_dim = self.embed_dim //self.num_heads
+        self.scale = self.head_dim** -0.5
+        self.dropout = config.attention_dropout
+
+        
+        self.k_proj = nn.Linear(self.embed_dim, self.embed_dim)
+        self.q_proj = nn.Linear(self.embed_dim, self.embed_dim)
+        self.v_proj = nn.Linear(self.embed_dim, self.embed_dim)
+        self.out_proj = nn.Linear(self.embed_dim, self.embed_dim)
+    
+    def forward(self, hidden_states : torch.Tensor) -> Tuple[torch.Tensor, Optional[torch.Tensor]]:
         
         pass
-
-
-    def forward(self, hidden_states : torch.Tensor) -> Tuple[torch.Tensor]:
-
-
-        pass
+    
         
 
 
