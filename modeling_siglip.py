@@ -108,7 +108,9 @@ class SiglipAttention(nn.Module):
     
     def forward(self, hidden_states : torch.Tensor) -> Tuple[torch.Tensor, Optional[torch.Tensor]]:
         
-        # TO do in progress   
+        # TO do in progress
+        #THis neeeds to be done later  i'm still figuring out how to implement multi-head attention
+   
         pass
     
     
