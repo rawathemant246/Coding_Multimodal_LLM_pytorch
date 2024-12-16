@@ -108,14 +108,25 @@ class SiglipAttention(nn.Module):
     
     def forward(self, hidden_states : torch.Tensor) -> Tuple[torch.Tensor, Optional[torch.Tensor]]:
         
-        # TO do in progress
-        #THis neeeds to be done later  i'm still figuring out how to implement multi-head attention
-   
-        pass
+        #hidden_states :  [Batch_size, Num_patches, Embed_dims]
+        batch_size, seq_len, _ = hidden_states.size()
+        
+        #query_states : [Batch_size, Num_Patches, Embed_dim]
+        query_states = self.q_proj(hidden_states)
+        
+        #key_states : [Batch_size, Num_patches, Embed_dim]
+        key_states = self.k_proj(hidden_states)
+        
+        #value_states = [Batch_size,Num_patches, Embed_dim]
+        value_states = self.v_proj(hidden_states)
+        
+        #query_states : [Batch_size, Num_Heads, Num_Patches, Head_Dim]
+        query_states = query_states.view(batch_size, seq_len, self.num_heads,self.head_dim).transpose(1,2)
+        
+        
     
     
         
-
 
 class SiglipMLP(nn.Module):
     
