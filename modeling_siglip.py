@@ -123,8 +123,8 @@ class SiglipAttention(nn.Module):
         #query_states : [Batch_size, Num_Heads, Num_Patches, Head_Dim]
         query_states = query_states.view(batch_size, seq_len, self.num_heads,self.head_dim).transpose(1,2)
         
-        
-    
+        #Trying to think what should be nextt thing to do in forward method 
+        pass
     
         
 
