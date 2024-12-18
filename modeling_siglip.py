@@ -123,10 +123,18 @@ class SiglipAttention(nn.Module):
         #query_states : [Batch_size, Num_Heads, Num_Patches, Head_Dim]
         query_states = query_states.view(batch_size, seq_len, self.num_heads,self.head_dim).transpose(1,2)
         
-        #Trying to think what should be nextt thing to do in forward method 
-        pass
-    
         
+        key_states = key_states.view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1,2)
+        
+        value_states = value_states.view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1,2)
+        
+        #caluclate the attention using formula Q * K^T / sqrt(d_k). attn_weights : [Batch_size, Num_Heads, Num_patches, Num_Patches]
+        attn_weights = (torch.matmul(query_states, key_states.transpose(2,3)*self.scale))
+        
+        if attn_weights.size() != (batch_size, self.num_heads, seq_len, seq_len):
+            raise ValueError(f"Attention weights should be of shape ({batch_size}, {self.num_heads}, {seq_len},{seq_len}), but is {attn_weights.size()}")
+    
+        pass
 
 class SiglipMLP(nn.Module):
     
