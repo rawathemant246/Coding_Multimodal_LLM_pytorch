@@ -134,8 +134,13 @@ class SiglipAttention(nn.Module):
         if attn_weights.size() != (batch_size, self.num_heads, seq_len, seq_len):
             raise ValueError(f"Attention weights should be of shape ({batch_size}, {self.num_heads}, {seq_len},{seq_len}), but is {attn_weights.size()}")
     
+        
+        #Apply the softmax row-wise attn_weight : [Batch_size,Num_Heads, Num_Patches, Num_Patches]
+        attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query_states.dtype)
+        
+        #Apply dropout only during training 
+        attn_weights = nn.functional.dropout(attn_weights, p=self.dropout, training=self.training)
         pass
-
 class SiglipMLP(nn.Module):
     
     def __init__(self, config):
