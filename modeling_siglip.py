@@ -140,7 +140,11 @@ class SiglipAttention(nn.Module):
         
         #Apply dropout only during training 
         attn_weights = nn.functional.dropout(attn_weights, p=self.dropout, training=self.training)
-        pass
+        
+        #Multiply the attention weights by the values states. attn_output : [Batch_size, Num_heads, Num_patches, Head_dim]
+        attn_output = torch.matmul(attn_weights,value_states)
+        
+        
 class SiglipMLP(nn.Module):
     
     def __init__(self, config):
